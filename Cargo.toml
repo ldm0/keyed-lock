@@ -1,9 +1,18 @@
 [package]
 name = "keyed-lock"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 description = "A keyed lock for synchronization."
 license = "MIT"
+keywords = [
+    "lock",
+    "mutex",
+    "keyed-lock",
+    "named-lock",
+    "async",
+]
+categories = ["concurrency"]
+repository = "https://github.com/ldm0/keyed-lock"
 
 [dependencies]
 parking_lot = { version = "0.12", optional = true, features = ["arc_lock"] }
