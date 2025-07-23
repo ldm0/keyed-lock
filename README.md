@@ -46,18 +46,16 @@ Locks with the same key will block each other, while locks with different keys w
 ```rust
 use keyed_lock::r#async::KeyedLock;
 
-async fn run() {
-    let lock = KeyedLock::new();
+let lock = KeyedLock::new();
 
-    // Lock key "a", this will not block.
-    let _guard_a = lock.lock("a").await;
+// Lock key "a", this will not block.
+let _guard_a = lock.lock("a").await;
 
-    // Lock key "b", this will not block as it's a different key.
-    let _guard_b = lock.lock("b").await;
+// Lock key "b", this will not block as it's a different key.
+let _guard_b = lock.lock("b").await;
 
-    // Try to lock "a" again, this will block until `_guard_a` is dropped.
-    // let _guard_a2 = lock.lock("a").await;
-}
+// Try to lock "a" again, this will block until `_guard_a` is dropped.
+// let _guard_a2 = lock.lock("a").await;
 ```
 
 ## Features
