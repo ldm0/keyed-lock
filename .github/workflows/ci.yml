@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Test Features
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        features:
+          - "sync"
+          - "async"
+          - "async,sync"
+          - "sync,send_guard"
+          - "async,send_guard"
+          - "async,sync,send_guard"
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: stable
+            profile: minimal
+      - name: Run tests
+        run: cargo test --no-default-features --features ${{ matrix.features }}
