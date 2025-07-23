@@ -15,7 +15,7 @@ categories = ["concurrency"]
 repository = "https://github.com/ldm0/keyed-lock"
 
 [dependencies]
-parking_lot = { version = "0.12", optional = true, features = ["arc_lock"] }
+parking_lot = { version = "0.12", features = ["arc_lock"] }
 tokio = { version = "1", optional = true, features = ["sync"] }
 
 [dev-dependencies]
@@ -23,6 +23,6 @@ tokio = { version = "1", features = ["full"] }
 
 [features]
 default = ["sync", "async"]
-sync = ["parking_lot"]
+sync = []
 async = ["tokio"]
-send_guard = ["parking_lot?/send_guard"]
+send_guard = ["parking_lot/send_guard"]

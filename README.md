@@ -28,13 +28,13 @@ use keyed_lock::sync::KeyedLock;
 let lock = KeyedLock::new();
 
 // Lock key "a", this will not block.
-let _guard_a = lock.lock("a").unwrap();
+let _guard_a = lock.lock("a");
 
 // Lock key "b", this will not block as it's a different key.
-let _guard_b = lock.lock("b").unwrap();
+let _guard_b = lock.lock("b");
 
 // Try to lock "a" again, this will block until `_guard_a` is dropped.
-// let _guard_a2 = lock.lock("a").unwrap();
+// let _guard_a2 = lock.lock("a");
 ```
 
 ### Asynchronous
@@ -50,13 +50,13 @@ async fn run() {
     let lock = KeyedLock::new();
 
     // Lock key "a", this will not block.
-    let _guard_a = lock.lock("a").await.unwrap();
+    let _guard_a = lock.lock("a").await;
 
     // Lock key "b", this will not block as it's a different key.
-    let _guard_b = lock.lock("b").await.unwrap();
+    let _guard_b = lock.lock("b").await;
 
     // Try to lock "a" again, this will block until `_guard_a` is dropped.
-    // let _guard_a2 = lock.lock("a").await.unwrap();
+    // let _guard_a2 = lock.lock("a").await;
 }
 ```
 
